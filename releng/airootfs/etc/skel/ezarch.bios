@@ -26,6 +26,7 @@ XFCEPKGLST=$(</etc/skel/package_configs/xfce.pkglst)
 MATEPKGLST=$(</etc/skel/package_configs/mate.pkglst)
 CINNPKGLST=$(</etc/skel/package_configs/cinn.pkglst)
 GNOMEPKGLST=$(</etc/skel/package_configs/gnome.pkglst)
+PROGRAMPKGLST=$(</etc/skel/package_configs/programming.pkglst)
 
 # ---------------------------------------
 # Define Functions:
@@ -503,6 +504,21 @@ instgen () {
 }
 #
 #
+
+instprog () {
+  clear
+  pacstrap /mnt $PROGRAMPKGLST
+  sleep 2
+  arch-chroot /mnt systemctl enable haveged.service
+  clear
+  echo -e "\n"
+  echo "Programming items installed..."
+  sleep 2
+  clear
+}
+
+#
+#
 instmedia () {
   clear
   pacstrap /mnt $MEDIAPKGLST
@@ -677,6 +693,8 @@ insti3 () {
   arch-chroot /mnt mkdir /home/"$USRNAME"/.config
   arch-chroot /mnt mkdir /home/"$USRNAME"/.config/i3 
   cp /etc/skel/i3/config /mnt/home/"$USRNAME"/.config/i3
+  arch-chroot /mnt mkdir /home/"$USRNAME"/Pictures
+  cp /etc/skel/i3/ElectricArchBackground.png /mnt/home/"$USRNAME"/Pictures
   cp /etc/skel/i3/i3-sensible-terminal /mnt/usr/bin
 #  cp -r /etc/skel/speech-dispatcher /mnt/home/"$USRNAME"/.config
   arch-chroot /mnt chown -R "$USRNAME" /home/"$USRNAME"/.config
@@ -922,11 +940,12 @@ do
   echo ""
   echo "  1) Xorg"
   echo "  2) General"
-  echo "  3) Multimedia"
-  echo "  4) Networking"
-  echo "  5) Fonts"
-  echo "  6) Printing support"
-  echo "  7) Virtual Box Support"  
+  echo "  3) Programming"
+  echo "  4) Multimedia"
+  echo "  5) Networking"
+  echo "  6) Fonts"
+  echo "  7) Printing support"
+  echo "  8) Virtual Box Support"  
   echo ""
   echo "  R) Return to menu"
   echo -e "\n"
@@ -934,11 +953,12 @@ do
   case $userchoice in
     1 ) instxorg ;;
     2 ) instgen ;;
-    3 ) instmedia ;;
-    4 ) instnet ;;
-    5 ) instfonts ;;
-    6 ) instprint ;;
-    7 ) virtbox ;;
+    3 ) instprog ;;    
+    4 ) instmedia ;;
+    5 ) instnet ;;
+    6 ) instfonts ;;
+    7 ) instprint ;;
+    8 ) virtbox ;;
     r|R ) main_menu ;;
     * ) invalid ;;
   esac
