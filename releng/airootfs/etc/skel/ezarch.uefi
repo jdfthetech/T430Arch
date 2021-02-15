@@ -701,7 +701,9 @@ insti3 () {
   echo "pushing custom config files for i3"
   arch-chroot /mnt mkdir /home/"$USRNAME"/.config
   arch-chroot /mnt mkdir /home/"$USRNAME"/.config/i3 
+  arch-chroot /mnt mkdir /home/"$USRNAME"/.config/i3status  
   cp /etc/skel/i3/config /mnt/home/"$USRNAME"/.config/i3
+  cp /etc/skel/i3/statusconfig /mnt/home/"$USRNAME"/.config/i3status/config  
   arch-chroot /mnt mkdir /home/"$USRNAME"/Pictures
   cp /etc/skel/i3/ElectricArchBackground.png /mnt/home/"$USRNAME"/Pictures
   cp /etc/skel/i3/i3-sensible-terminal /mnt/usr/bin
