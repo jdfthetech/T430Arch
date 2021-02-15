@@ -700,13 +700,21 @@ insti3 () {
   clear
   echo "pushing custom config files for i3"
   arch-chroot /mnt mkdir /home/"$USRNAME"/.config
-  arch-chroot /mnt mkdir /home/"$USRNAME"/.config/i3   
-  cp /etc/skel/i3/config /mnt/home/"$USRNAME"/.config/i3
+  arch-chroot /mnt mkdir /home/"$USRNAME"/.config/i3
+  arch-chroot /mnt mkdir /home/"$USRNAME"/.themes      
   arch-chroot /mnt mkdir /home/"$USRNAME"/Pictures
-  cp /etc/skel/i3/ElectricArchBackground.png /mnt/home/"$USRNAME"/Pictures
-  cp /etc/skel/i3/i3-sensible-terminal /mnt/usr/bin
+  cp /etc/skel/i3/config /mnt/home/"$USRNAME"/.config/i3  
+  cp /etc/skel/i3/ElectricArchBackground.png /mnt/home/"$USRNAME"/Pictures/ElectricArchBackground.png
+  cp /etc/skel/i3/purpleSpace.jpg /mnt/home/"$USRNAME"/Pictures/purpleSpace.jpg
+  cp /etc/skel/i3/Darkaneon_Purple.tar.gz /mnt//home/"$USRNAME"/.themes/Darkaneon_Purple.tar.gz
+  cp -r /etc/skel/i3/terminator /mnt/home/"$USRNAME"/.config
 #  cp -r /etc/skel/speech-dispatcher /mnt/home/"$USRNAME"/.config
-  arch-chroot /mnt chown -R "$USRNAME" /home/"$USRNAME"/.config
+  arch-chroot /mnt chown -R "$USRNAME" /home/"$USRNAME"
+#  arch-chroot /mnt chown -R "$USRNAME" /home/"$USRNAME"/.config
+#  arch-chroot /mnt chown -R "$USRNAME" /home/"$USRNAME"/.config/i3
+#  arch-chroot /mnt chown -R "$USRNAME" /home/"$USRNAME"/.themes
+#  arch-chroot /mnt chown -R "$USRNAME" /home/"$USRNAME"/terminator
+#  arch-chroot /mnt chown -R "$USRNAME" /home/"$USRNAME"/Pictures
   cp /etc/skel/vol /mnt/usr/bin
 # enable auto logon in lightdm.conf
 
